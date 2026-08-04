@@ -1,0 +1,32 @@
+name: Update rates
+
+on:
+  schedule:
+    # Every Monday 01:00 UTC (~09:00 SGT) — after MAS's Monday morning
+    # auction results and SSB announcements typically post.
+    - cron: "0 1 * * 1"
+  workflow_dispatch: {} # lets you trigger it manually from the Actions tab
+
+permissions:
+  contents: write
+
+jobs:
+  update-rates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Fetch latest rates
+        run: node scripts/fetch-rates.js
+
+      - name: Commit if changed
+        run: |
+          git config user.name "rateladder-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/rates.json
+          git diff --staged --quiet || git commit -m "chore: update rates $(date -u +%Y-%m-%d)"
+          git push

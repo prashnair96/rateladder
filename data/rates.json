@@ -1,0 +1,17 @@
+{
+  "generatedAt": "2026-08-04T00:00:00.000Z",
+  "note": "Seeded manually with confirmed rates as of early Aug 2026. Replace with output of scripts/fetch-rates.js once the scraper is verified against live MAS pages.",
+  "ssb": {
+    "code": "SBJUL26",
+    "rate1y": 1.46,
+    "rate10y": 2.11
+  },
+  "tbill": {
+    "rate6m": 1.55,
+    "rate1y": 1.68
+  },
+  "bank": {
+    "fd12": 1.60,
+    "fd3": 1.35
+  }
+}

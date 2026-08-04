@@ -1,0 +1,12 @@
+{
+  "name": "rateladder-data",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Weekly fetch job for SG SSB / T-bill / bank FD rates",
+  "scripts": {
+    "fetch": "node scripts/fetch-rates.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
