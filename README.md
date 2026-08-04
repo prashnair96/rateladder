@@ -37,6 +37,31 @@ Then check the printed output:
   scraping HTML, it'll be far more reliable), and adjust the regexes in
   `fetchSSBRates()` / `fetchTBillRates()` to match what's actually there.
 
+## Known issue: MAS blocks automated requests
+
+Confirmed by testing: MAS's own pages actively block bot-like traffic.
+The bank FD rate fetch (data.gov.sg) is unaffected — it's a real public
+API. But the SSB/T-bill scrapers may keep failing however much the
+headers are tuned, if MAS is running proper bot-detection (e.g.
+Cloudflare's challenge page) rather than a simple check.
+
+**If that's what's happening, the pragmatic fix is a manual update
+instead of chasing scraping indefinitely:**
+
+1. Once a month (when a new SSB issue or T-bill auction is announced),
+   open `data/rates.json` directly on GitHub.
+2. Click the pencil (edit) icon.
+3. Update the `ssb` and `tbill` numbers by hand, from mas.gov.sg or a news
+   summary.
+4. Commit directly to `main`.
+
+This takes under a minute and is honestly more reliable than fighting
+bot-detection long-term. The script still automates the bank FD rate
+(which changes more often and doesn't block requests), and falls back to
+your last manually-entered SSB/T-bill numbers automatically if the
+automated fetch keeps failing — it marks them `_stale: true` so you know
+they might need a refresh.
+
 ## Setup
 
 1. Create a new GitHub repo, push this folder to it.
