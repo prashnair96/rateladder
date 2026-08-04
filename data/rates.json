@@ -1,17 +1,19 @@
 {
-  "generatedAt": "2026-08-04T00:00:00.000Z",
-  "note": "Seeded manually with confirmed rates as of early Aug 2026. Replace with output of scripts/fetch-rates.js once the scraper is verified against live MAS pages.",
+  "generatedAt": "2026-08-04T23:54:28.657Z",
+  "bank": {
+    "fd12": 1.6,
+    "fd3": 1.35,
+    "_stale": true
+  },
   "ssb": {
     "code": "SBJUL26",
     "rate1y": 1.46,
-    "rate10y": 2.11
+    "rate10y": 2.11,
+    "_stale": true
   },
   "tbill": {
     "rate6m": 1.55,
-    "rate1y": 1.68
-  },
-  "bank": {
-    "fd12": 1.60,
-    "fd3": 1.35
+    "rate1y": 1.68,
+    "_stale": true
   }
 }
